@@ -14,7 +14,7 @@ public:
 	void insLast (const ListType _value);																// вставить последний
 	bool IsFull (){return (TLink<ListType>*tmp=new TLink<ListType>)==NULL;}							   // полна ли очередь?
 	bool IsEnd () {return pCurrent==pStop;}															  // конец очереди? pCurrent=pStop pPrevious=последнему элементу
-	void Reset() { pPrevious = pHead; pCurrent = pFirst; currentpos = 1; }							 // установить текущий на начало
+	void Reset() { pPrevious = NULL; pCurrent = pFirst; currentpos = 1; }							 // установить текущий на начало
 	void GoNext()
 	{
 		if (pCurrent != pStop)
@@ -153,6 +153,12 @@ void THeadList<ListType>::delCurrent()
 				{
 					pPrevious = NULL;
 					pCurrent = pFirst;
+					pFirst->NextLink = pStop;
+					currentpos--;
+				}
+				else
+				{
+					for (Reset(); pCurrent->NextLink->NextLink != pStop; GoNext());
 					currentpos--;
 				}
 			delete tmp;

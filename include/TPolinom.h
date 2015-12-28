@@ -239,50 +239,61 @@ TPolinom TPolinom::operator+(TPolinom & _polinom)
 	int i=1, j = 1;
 	TPolinom tmp;
 	tmp = *this;
-	tmp.Reset();
-	_polinom.Reset();
-	while (!_polinom.IsEnd())
+	if (_polinom.listlen != 0 && listlen != 0)
 	{
-		if(tmp.pCurrent->value.power > _polinom.pCurrent->value.power)
+		tmp.Reset();
+		_polinom.Reset();
+		while (!_polinom.IsEnd())
 		{
-			tmp.GoNext();
+			if (tmp.pCurrent->value.power > _polinom.pCurrent->value.power)
+			{
+				tmp.GoNext();
+			}
+			else
+				if (tmp.pCurrent->value.power < _polinom.pCurrent->value.power)
+				{
+					tmp.insCurrent(_polinom.pCurrent->value);
+					_polinom.GoNext();
+				}
+				else // if(tmp.pCurrent->value.power == _polinom.pCurrent->value.power)
+				{
+					tmp.pCurrent->value.coeff += _polinom.pCurrent->value.coeff;
+					if (tmp.pCurrent->value.coeff == 0)
+						tmp.delCurrent();
+					_polinom.GoNext();
+				}
 		}
-		else
-			if(tmp.pCurrent->value.power < _polinom.pCurrent->value.power)
-			{
-				tmp.insCurrent(_polinom.pCurrent->value);
-				_polinom.GoNext();
-			}
-			else // if(tmp.pCurrent->value.power == _polinom.pCurrent->value.power)
-			{
-				tmp.pCurrent->value.coeff+=_polinom.pCurrent->value.coeff;
-				if (tmp.pCurrent->value.coeff==0)
-					tmp.delCurrent();
-				_polinom.GoNext();
-			}
+		tmp.similar();
 	}
-	tmp.similar();
+	else
+		if (_polinom.listlen != 0 && listlen == 0)
+			tmp = _polinom;
 	return tmp;
 }
 
 TPolinom TPolinom::operator*(const double _val)
 {
-	for (Reset(); !IsEnd(); GoNext())
-		pCurrent->value.coeff *= _val;
-	return *this;
+	TPolinom tmp = *this;
+	if(listlen!=0)
+		for (tmp.Reset(); !tmp.IsEnd(); tmp.GoNext())
+			tmp.pCurrent->value.coeff *= _val;
+	return tmp;
 }
 
 TPolinom TPolinom::operator* (TPolinom &_polinom)
 {
 	TPolinom tmp; TMonom temp;
-	for (Reset(); !IsEnd(); GoNext())
-		for (_polinom.Reset(); !_polinom.IsEnd(); _polinom.GoNext())
-		{
-			temp.coeff = pCurrent->value.coeff*_polinom.pCurrent->value.coeff;
-			temp.power = pCurrent->value.power + _polinom.pCurrent->value.power;
-			tmp.insLast(temp);
-		}
-	tmp.similar();
+	if (_polinom.listlen != 0 && listlen != 0)
+	{
+		for (Reset(); !IsEnd(); GoNext())
+			for (_polinom.Reset(); !_polinom.IsEnd(); _polinom.GoNext())
+			{
+				temp.coeff = pCurrent->value.coeff*_polinom.pCurrent->value.coeff;
+				temp.power = pCurrent->value.power + _polinom.pCurrent->value.power;
+				tmp.insLast(temp);
+			}
+		tmp.similar();
+	}
 	return tmp;
 }
 

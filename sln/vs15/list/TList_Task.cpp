@@ -85,7 +85,7 @@ int main()
 	//cout << "Z: " << Z << endl;
 	*/
 	cout << "введите количество мономов:" << endl;
-	cin >> numberofmonoms;
+	do { cin >> numberofmonoms; } while (numberofmonoms<0);
 	massive3[0] = new double[numberofmonoms];
 	massive3[1] = new double[numberofmonoms];
 	for (int i = 0; i < numberofmonoms; i++)
@@ -102,7 +102,7 @@ int main()
 	P = CreatePolinom(massive3, numberofmonoms);
 	///
 	cout << "введите количество мономов:" << endl;
-	cin >> numberofmonoms;
+	do { cin >> numberofmonoms; } while (numberofmonoms<0);
 	massive3[0] = new double[numberofmonoms];
 	massive3[1] = new double[numberofmonoms];
 	for (int i = 0; i < numberofmonoms; i++)
