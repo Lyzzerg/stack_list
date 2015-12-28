@@ -13,7 +13,7 @@
 using namespace std;
 class TParser
 {
-public:
+private:
 	char infix[MaxLen];
 	char postfix[MaxLen];
 	TStack<double> st_d;
@@ -28,6 +28,8 @@ public:
 	bool IsFuction(char _ch);
 	void infixtopostfix();
 	double calcPost();
+	void printinfix() { cout << "infix: " << infix << endl; }
+	void printpostfix() { cout << "postfix: " << postfix << endl; }
 	void Function(char* _ch, int _k, double &_rez);
 };
 
@@ -38,6 +40,7 @@ TParser::TParser(char *_str) :st_d(100), st_c(100)
 	else
 		strcpy_s(infix, _str);
 }
+
 TParser :: ~TParser() {}
 
 int TParser::Priority(char _ch)
@@ -165,7 +168,6 @@ void TParser::infixtopostfix()
 	//	затем считываем пока не '\0'
 	while (infix[i] != '\0')
 	{
-		//if (IsFunction(infix[i]))
 		if (IsOperation(infix[i])) //если встречена операция
 		{
 			if (infix[i] == '(')

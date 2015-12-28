@@ -16,10 +16,10 @@ public:
 	~TStack();
 	bool IsFull();
 	bool IsEmpty();
-	void push(const ValType &_elem);
+	void push(const ValType _elem);
 	ValType top();
 	ValType pop();
-	void stack_add_memory(const int &_byte);
+	void stack_add_memory(const int _byte);
 	void stclear();
 };
 
@@ -60,7 +60,7 @@ bool TStack<ValType>::IsEmpty()
 }
 
 template<class ValType>
-void TStack<ValType>::push(const ValType & _elem)
+void TStack<ValType>::push(const ValType  _elem)
 {
 	if (top_index == stack_size - 1)
 		throw "Stack is Full";
@@ -84,7 +84,7 @@ ValType TStack<ValType>::pop()
 }
 
 template<class ValType>
-void TStack<ValType>::stack_add_memory(const int & _byte)
+void TStack<ValType>::stack_add_memory(const int  _byte)
 {
 	if (top_index == -1)
 	{

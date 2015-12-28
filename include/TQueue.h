@@ -8,7 +8,7 @@ private:
 
 public:
 	TQueue(int _maxsize = 10);
-	virtual ~TQueue() { delete[] queue; }
+	~TQueue() { delete[] queue; }
 	TQueue(const TQueue& _queue);
 	bool IsEmpty(){return queuelen == 0;}
 	bool IsFull(){return queuelen == MaxSize;}
@@ -47,7 +47,7 @@ template<class QueueType>
 void TQueue<QueueType>::Push(const QueueType _elem)
 {
 	if (queuelen == MaxSize)
-		throw len;
+		throw queuelen;
 	if (end < MaxSize - 1)
 		end++;
 	else 
@@ -60,7 +60,7 @@ template<class QueueType>
 QueueType TQueue<QueueType>::Pop()
 {
 	if (!queuelen)
-		throw - 1;
+		throw queuelen;
 	QueueType tmp = queue[begin];
 	if (begin < MaxSize - 1)
 		begin++;

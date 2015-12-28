@@ -1,9 +1,7 @@
 // Stack_Task.cpp: определяет точку входа для консольного приложения.
 //
 #define _CRT_SECURE_NO_WARNINGS
-#include "../../../include/TStack.h"
 #include "../../../include/Parser.h"
-#include "../../../include/TQueue.h"
 #include <iostream>
 #define MaxLen 201
 using namespace std;
@@ -19,8 +17,8 @@ int main()
 			break;
 		TParser tmp(tmpch);
 		tmp.infixtopostfix();
-		cout << "infix: " << tmp.infix << endl;
-		cout << "postfix: " << tmp.postfix << endl;
+		tmp.printinfix();
+		tmp.printpostfix();
 		rez=tmp.calcPost();
 		cout << "result: " <<rez<< endl;
 	}

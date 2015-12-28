@@ -67,7 +67,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>../../Debug/gtest.lib;</AdditionalDependencies>
+      <AdditionalDependencies>$(MSBuildStartupDirectory)\Debug\gtest.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
@@ -98,18 +98,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\include\Parser.h" />
-    <ClInclude Include="..\..\..\include\THeadList.h" />
-    <ClInclude Include="..\..\..\include\TLink.h" />
-    <ClInclude Include="..\..\..\include\TMonom.h" />
-    <ClInclude Include="..\..\..\include\TPolinom.h" />
-    <ClInclude Include="..\..\..\include\TQueue.h" />
-    <ClInclude Include="..\..\..\include\TStack.h" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="..\..\..\test\test_list.cpp" />
     <ClCompile Include="..\..\..\test\test_main.cpp" />
     <ClCompile Include="..\..\..\test\test_tstack.cpp" />
+    <ClCompile Include="test_queue.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

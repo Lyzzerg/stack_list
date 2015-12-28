@@ -26,9 +26,6 @@
     <ClInclude Include="..\..\..\include\Parser.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\TQueue.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\include\TStack.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
